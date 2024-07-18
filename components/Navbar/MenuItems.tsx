@@ -6,7 +6,7 @@ const MenuItems = () => {
   const pathname = usePathname();
 
   return (
-    <div className="hidden md:flex items-center ">
+    <div className="hidden md:flex items-center gap-3  ">
       {MenuItemsData.map((item, index) => (
         <div
           className={`text-white flex items-center justify-center text-md border-b border-t hover:border-primary px-3 py-2 rounded-md ${
