@@ -1,3 +1,5 @@
+import Ending from "@/components/Homepage/Ending";
+import Faq from "@/components/Homepage/FAQ/Faq";
 import FeaturedProperties from "@/components/Homepage/featuredProperties/FeaturedProperties";
 import Hero from "@/components/Homepage/Hero/Hero";
 import Testimonials from "@/components/Homepage/Testimonials/Testimonials";
@@ -9,6 +11,8 @@ export default function Home() {
       <Hero />
       <FeaturedProperties />
       <Testimonials />
+      <Faq />
+      <Ending />
     </main>
   );
 }

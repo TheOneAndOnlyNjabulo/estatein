@@ -6,8 +6,9 @@ import Button from "./Button";
 interface HeaderProps {
   title: string;
   subtitle: string;
-  buttonTitle: string;
+  buttonTitle?: string;
   buttonOnClick: () => void;
+  hidden?: boolean;
 }
 
 const Header = ({
@@ -15,6 +16,7 @@ const Header = ({
   subtitle,
   buttonTitle,
   buttonOnClick,
+  hidden,
 }: HeaderProps) => {
   return (
     <div>
@@ -26,12 +28,13 @@ const Header = ({
       <h1 className="text-6xl font-bold text-white mt-4">{title}</h1>
       {/* Subtitle and button */}
       <div className="flex justify-between mt-2">
-        <p className="text-white text-2 max-w-[700px] xl:max-w-[900px] xl:text-xl">
+        <p className="text-white  text-2 max-w-[700px] xl:max-w-[900px] xl:text-xl">
           {subtitle}
         </p>
         <Button
+          hidden={hidden}
           title={buttonTitle}
-          style="hidden lg:block"
+          style={`hidden hover:bg-bgsecondary ${hidden ? "" : "lg:block"}`}
           onClick={buttonOnClick}
         />
       </div>

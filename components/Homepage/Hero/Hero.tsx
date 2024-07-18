@@ -1,8 +1,10 @@
+"use client";
 import { HeroCardsData, MidHeroCards } from "@/constants/constants";
 import Image from "next/image";
 import React from "react";
 import Button from "../../Button";
 import Link from "next/link";
+import HeroCards from "./HeroCards";
 
 const Hero = () => {
   return (
@@ -34,21 +36,7 @@ const Hero = () => {
                 onClick={() => {}}
               />
             </div>
-            <div className="flex gap-2">
-              {HeroCardsData.map((card) => (
-                <div
-                  key={card.title}
-                  className="flex items-start justify-center flex-col p-3 lg:px-4 xl:px-7 lg:py-4 xl:py-6 border border-white/20 rounded-lg"
-                >
-                  <div className="text-2xl xl:text-5xl lg:text-3xl font-bold">
-                    {card.title}
-                  </div>
-                  <p className="text-xs lg:text-sm xl:text-lg ">
-                    {card.subtitle}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <HeroCards />
           </div>
         </div>
         {/* First containter Ends */}

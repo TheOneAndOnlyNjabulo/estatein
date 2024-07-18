@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import { Urbanist } from "next/font/google";
+import Footer from "@/components/Footer/Footer";
 
 const urbanist = Urbanist({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body className={urbanist.className}>
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

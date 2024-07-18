@@ -1,15 +1,18 @@
 import React from "react";
 interface ButtonProps {
-  title: string;
+  title?: string;
   style?: string;
-  smallHidden?: string;
+  hidden?: boolean;
   onClick: () => void;
 }
 
-const Button = ({ title, style }: ButtonProps) => {
+const Button = ({ title, style, onClick, hidden }: ButtonProps) => {
   return (
     <button
-      className={`lg:px-4 p-2 md:p-3 lg:py-3 border border-white/20 rounded-lg text-white ${style}`}
+      onClick={onClick}
+      className={`lg:px-4 p-2 md:p-3 lg:py-3 border border-white/20 rounded-lg text-white ${
+        hidden && "hidden"
+      } ${style}`}
     >
       {title}
     </button>
