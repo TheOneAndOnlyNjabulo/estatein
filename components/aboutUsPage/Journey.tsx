@@ -2,6 +2,7 @@
 import React from "react";
 import Header from "../Header";
 import HeroCards from "../Homepage/Hero/HeroCards";
+import Image from "next/image";
 
 const Journey = () => {
   return (
@@ -16,7 +17,11 @@ const Journey = () => {
         <HeroCards />
       </div>
       <div className="flex-1">
-        <div className="relative w-full md:h-full flex-grow bg-bgsecondary h-[200px]  rounded-lg border border-white/10"></div>
+        <div className="relative bg-[url(/abstract.png)] e w-full md:h-full flex-grow bg-bgsecondary h-[200px]  rounded-lg border border-white/10">
+          <div className="relative aspect-auto h-full max-h-[400px]">
+            <Image src="/hand.png" fill alt="hand" />
+          </div>
+        </div>
       </div>
     </div>
   );

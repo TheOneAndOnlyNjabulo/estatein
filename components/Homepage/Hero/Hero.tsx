@@ -8,7 +8,10 @@ import HeroCards from "./HeroCards";
 
 const Hero = () => {
   return (
-    <section className="bg-bgsecondary  flex flex-col px-3 md:px-0 gap-3 ">
+    <section
+      id="hero"
+      className="bg-bgsecondary  flex flex-col px-3 md:px-0 gap-3 "
+    >
       {/* Hero */}
       <div className="flex flex-wrap h-auto bg-bgsecondary   ">
         {/* First section starts */}

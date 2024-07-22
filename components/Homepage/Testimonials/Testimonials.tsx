@@ -7,7 +7,7 @@ import TestemonyCard from "./TestemonyCard";
 
 const Testimonials = () => {
   return (
-    <div className="max-w-[1440px] m-auto mt-10 px-3 py-4">
+    <div id="testimonials" className="max-w-[1440px] m-auto mt-10 px-3 py-4">
       <Header
         title="What Our Clients Say"
         subtitle="Read the success stories and heartfelt testimonials from our valued clients. Discover why they chose Estatein for their real estate needs."

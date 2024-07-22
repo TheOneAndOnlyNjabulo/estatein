@@ -11,7 +11,7 @@ import React from "react";
 const FeaturedProperties = () => {
   return (
     <div>
-      <div className="max-w-[1440px] m-auto mt-10 px-3 py-4">
+      <div id="features" className="max-w-[1440px] m-auto mt-10 px-3 py-4">
         <Header
           title="Featured Properties"
           subtitle={`Explore our handpacked selection of feature properties. each listing

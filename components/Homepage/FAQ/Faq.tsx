@@ -7,7 +7,7 @@ import FaqCard from "./FaqCard";
 
 const Faq = () => {
   return (
-    <div className="max-w-[1440px] m-auto mt-10 px-3 py-4">
+    <div id="faq" className="max-w-[1440px] m-auto mt-10 px-3 py-4">
       <Header
         title="Frequently Asked Questions"
         subtitle="Find answers to common questions about Estatein's services, property listings, and the real estate process. We're here to provide clarity and assist you every step of the way. "
