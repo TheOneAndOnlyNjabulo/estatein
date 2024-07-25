@@ -2,8 +2,10 @@
 import Image from "next/image";
 import React from "react";
 import Button from "../Button";
+import { useRouter } from "next/navigation";
 
 const Ending = () => {
+  const router = useRouter();
   return (
     <div className="h-auto">
       <div className="flex justify-between relative lg:h-[200px] sm:h-[280px] h-[350px] border border-white/10 items-center ">
@@ -26,7 +28,7 @@ const Ending = () => {
             <Button
               style="bg-primary hover:bg-bgsecondary w-[200px] lg:w-[200px] lg:h-[50px] lg:p-2"
               title="Explore Properties"
-              onClick={() => {}}
+              onClick={() => router.push("/properties")}
             />
           </div>
         </div>

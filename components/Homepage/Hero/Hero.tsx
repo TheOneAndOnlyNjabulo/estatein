@@ -5,8 +5,10 @@ import React from "react";
 import Button from "../../Button";
 import Link from "next/link";
 import HeroCards from "./HeroCards";
+import { useRouter } from "next/navigation";
 
 const Hero = () => {
+  const router = useRouter();
   return (
     <section
       id="hero"
@@ -36,7 +38,7 @@ const Hero = () => {
               <Button
                 title="Browse Properties"
                 style="bg-primary"
-                onClick={() => {}}
+                onClick={() => router.push("/properties")}
               />
             </div>
             <HeroCards />
