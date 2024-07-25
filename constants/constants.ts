@@ -94,6 +94,34 @@ export const properties = [
       "A stunning 4-bedroom, 3-bedroom villa in a peacefull surbuban neighbourhood",
     price: "550",
   },
+  {
+    image: "/images/1.png",
+    title: "Seaside Serenity Villa",
+    description:
+      "A stunning 4-bedroom, 3-bedroom villa in a peacefull surbuban neighbourhood",
+    price: "550",
+  },
+  {
+    image: "/images/2.png",
+    title: "Metropolitan Haven",
+    description:
+      "A chic and fully-furnished 2-bedroom apartment with parametric city views",
+    price: "700",
+  },
+  {
+    image: "/images/3.png",
+    title: "Rustic Retreat Cottage",
+    description:
+      "An elegant 3-bedroom, 2.5-bathroom townhouse in a gated community",
+    price: "600",
+  },
+  {
+    image: "/images/1.png",
+    title: "Seaside Serenity Villa",
+    description:
+      "A stunning 4-bedroom, 3-bedroom villa in a peacefull surbuban neighbourhood",
+    price: "550",
+  },
   // {
   //   image: "/images/2.png",
   //   title: "Metropolitan Haven",
@@ -104,6 +132,27 @@ export const properties = [
 ];
 
 export const Testemonies = [
+  {
+    title: "Exceptional Service!",
+    desc: "Our experience with Estatein was outstanding. Their team's dedication and professionalism made finding our dream home a breeze. Highly recommended!",
+    profile: "/images/1.png",
+    location: "USA, California",
+    name: "Wade Warren",
+  },
+  {
+    title: "Efficient and Reliable",
+    desc: "Estaine provided us with top-notchh service. They helped us sell our property quickly and at a great price. We couldn't be happier with the results",
+    profile: "/images/2.png",
+    location: "USA, Florida",
+    name: "Emelle Thompson",
+  },
+  {
+    title: "Trusted Advisors",
+    desc: "The estain team guided us hroght the entire buying process. Their knowledge and commitment to our needs were impressive. Thank you for your support!",
+    profile: "/images/3.png",
+    location: "USA, Nevada",
+    name: "John MAns",
+  },
   {
     title: "Exceptional Service!",
     desc: "Our experience with Estatein was outstanding. Their team's dedication and professionalism made finding our dream home a breeze. Highly recommended!",
@@ -221,5 +270,28 @@ export const exprience = [
     title: "Getting the Best Deal",
     describtion:
       "We'll help you negotiate the best terms and prepare your offer. Our goal is to secure the property at the right price and on favorable terms.",
+  },
+];
+
+export const Teamm = [
+  {
+    name: "T'Chaka",
+    role: "Founder",
+    imageUrl: "/team1.jpg",
+  },
+  {
+    name: "Harley Quinn",
+    role: "Chief Real Estate Officer",
+    imageUrl: "/team2.jpg",
+  },
+  {
+    name: "Bruce Wayne",
+    role: "Head of Property Management",
+    imageUrl: "/team3.jpg",
+  },
+  {
+    name: "Monica Rambeau",
+    role: "Legal Councel",
+    imageUrl: "/team4.jpg",
   },
 ];

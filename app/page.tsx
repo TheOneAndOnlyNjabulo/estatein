@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="bg-background flex flex-col gap-3">
+    <main className="bg-background flex flex-col gap-3 ">
       <Hero />
       <FeaturedProperties />
       <Testimonials />

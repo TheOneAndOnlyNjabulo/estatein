@@ -17,7 +17,7 @@ const TestemonyCard = ({
   location,
 }: TestemonyProps) => {
   return (
-    <div className="mt-5 border border-white/20 text-white rounded-lg p-3 flex flex-col justify-between gap-2">
+    <div className="mt-5 max-w-[410px] border border-white/20 text-white rounded-lg p-3 flex flex-col justify-between gap-2">
       <div className="flex gap-2">
         <div className="relative h-8 w-8 rounded-full border border-white/20">
           <Image

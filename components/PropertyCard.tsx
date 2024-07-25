@@ -20,8 +20,7 @@ const PropertyCard = ({
       {/* Image */}
       <div className="relative  w-full h-[300px]">
         <Image
-          objectFit="cover"
-          className="rounded-lg"
+          className="rounded-lg object-cover"
           src={image}
           alt={title}
           fill
