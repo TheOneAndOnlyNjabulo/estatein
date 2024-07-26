@@ -6,22 +6,21 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Bath, Bed, Home, LocateIcon, MapPin } from "lucide-react";
 
 const fromSchema = z.object({
-  active: z.enum(["true", "false"]).transform((value) => value === "true"),
-  name: z.string().min(1),
-  description: z.string().min(1),
-  location: z.string().min(1),
+  name: z.string().min(1, "Name is Required!!"),
+  description: z.string().min(1, "Description is required!!"),
+  location: z.string().min(1, "Location is Required🤷‍♂️"),
+  type: z.string().min(1, "Guess What... Type is required!!!"),
   //   image: z.string().min(1),
   //   imagesMany: z.string().min(1),
-
-  type: z.string().min(1),
   bathrooms: z
     .string()
-    .min(1)
+    .min(1, "Required")
     .transform((value) => parseInt(value)),
   bedrooms: z
     .string()
-    .min(1)
+    .min(1, "Required")
     .transform((value) => parseInt(value)),
+  active: z.enum(["true", "false"]).transform((value) => value === "true"),
   //   area: z.number(),
   //   listingPrice: z.number(),
   // keyFeatures
