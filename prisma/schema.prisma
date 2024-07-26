@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Property {
+  id               String           @id @default(auto()) @map("_id") @db.ObjectId
+  name             String
+  description      String
+  location         String
+  image            String
+  imagesMany       String[]
+  active           Boolean          @default(false)
+  type             String // Property type (e.g. House, Apartment, etc.)
+  bathrooms        Int
+  bedrooms         Int
+  area             Int
+  keyFeatures      String[]
+  listingPrice     Int
+  additionalFees   AdditionalFees[] @relation("PropertyAdditionalFees")
+  monthlyCosts     MonthlyCosts[]   @relation("PropertyMonthlyCosts")
+  totalInitialCost Int              @default(0)
+  monthlyExpenses  Int              @default(0)
+}
+
+model AdditionalFees {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  amount     Int
+  propertyId String   @db.ObjectId
+  property   Property @relation("PropertyAdditionalFees", fields: [propertyId], references: [id])
+}
+
+model MonthlyCosts {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  amount     Int
+  propertyId String   @db.ObjectId
+  property   Property @relation("PropertyMonthlyCosts", fields: [propertyId], references: [id])
+}
