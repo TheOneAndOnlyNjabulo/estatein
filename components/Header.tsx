@@ -24,7 +24,7 @@ const Header = ({
       <div className="relative w-[60px] h-[30px] ">
         <Image src="/icons/stars.png" alt="stars" fill />
       </div>
-      {/* TItle */}
+      {/* TItle s*/}
       <h1 className="text-6xl font-bold text-white mt-4">{title}</h1>
       {/* Subtitle and button */}
       <div className="flex justify-between mt-2">
