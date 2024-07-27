@@ -19,7 +19,7 @@ export default async function Properties() {
 
   return (
     <div className="bg-background">
-      <div className="max-w-[1440px] p-5 bg-background text-white m-auto">
+      <div className="max-w-[1440px] h-auto p-5 bg-background text-white m-auto flex-grow">
         <PropertiesForms properties={properties} />
       </div>
     </div>
