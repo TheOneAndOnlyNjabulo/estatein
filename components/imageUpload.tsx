@@ -2,9 +2,9 @@ import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
 
-const ImageUpload = ({ onUpload }) => {
+const ImageUpload = ({ onUpload }: any) => {
   const onDrop = useCallback(
-    async (acceptedFiles) => {
+    async (acceptedFiles: any) => {
       const formData = new FormData();
       formData.append("file", acceptedFiles[0]);
       formData.append("p7bt73fe", "p7bt73fe"); // Replace with your Cloudinary upload preset

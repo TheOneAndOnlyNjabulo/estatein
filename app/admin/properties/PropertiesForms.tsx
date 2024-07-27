@@ -4,7 +4,7 @@ import { Property } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-const PropertiesForms = ({ properties }: { properties: Property[] }) => {
+const PropertiesForms = ({ properties }: { properties: Property[] | null }) => {
   const router = useRouter();
   return (
     <div>

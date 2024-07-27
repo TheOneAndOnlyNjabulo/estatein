@@ -14,7 +14,7 @@ async function getProperties() {
   return properties;
 }
 
-const page = async ({ property }: { property: Property }) => {
+export default async function Properties() {
   const properties = await getProperties();
 
   return (
@@ -24,6 +24,4 @@ const page = async ({ property }: { property: Property }) => {
       </div>
     </div>
   );
-};
-
-export default page;
+}

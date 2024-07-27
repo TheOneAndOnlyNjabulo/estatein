@@ -11,7 +11,7 @@ interface PropertyProps {
   };
 }
 
-const SingleProperty = async ({ params }: PropertyProps) => {
+export default async function SingleProperty({ params }: PropertyProps) {
   const property = await getPropertyById(params.id);
 
   if (property) {
@@ -37,6 +37,4 @@ const SingleProperty = async ({ params }: PropertyProps) => {
       </div>
     </div>
   );
-};
-
-export default SingleProperty;
+}
