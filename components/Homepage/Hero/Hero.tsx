@@ -54,7 +54,7 @@ const Hero = () => {
             <Image
               src="/Hero.png"
               sizes=""
-              style={{ objectFit: "cover" }}
+              className="object-cover"
               fill
               alt="Container"
             />

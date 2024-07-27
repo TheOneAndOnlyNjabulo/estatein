@@ -28,7 +28,7 @@ const PropertyCard = ({
   return (
     <div className=" border border-white/20  w-auto rounded-lg p-4">
       {/* Image */}
-      <div className="relative  w-full h-[300px]">
+      <div className="relative  w-full  h-[300px]">
         <Image
           onClick={() => router.push(`/properties/${id}`)}
           className="rounded-lg object-cover hover:scale-105 trasition cursor-pointer"

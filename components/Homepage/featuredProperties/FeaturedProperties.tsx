@@ -6,6 +6,7 @@ import PropertyCarousel from "@/components/PropertyCorusel";
 // import { properties } from "@/constants/constants";
 import { Property } from "@prisma/client";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 import { title } from "process";
 import React from "react";
@@ -15,6 +16,7 @@ interface HeroProps {
 }
 
 const FeaturedProperties = ({ properties }: HeroProps) => {
+  const router = useRouter();
   return (
     <div>
       <div id="features" className="max-w-[1440px] m-auto mt-10 px-3 py-4">
@@ -24,7 +26,7 @@ const FeaturedProperties = ({ properties }: HeroProps) => {
           offers a glimpse into exceptional homes and investments available
           through Estatein.Click "View Details" for more information`}
           buttonTitle="View All Properties"
-          buttonOnClick={() => {}}
+          buttonOnClick={() => router.push("/properties")}
         />
         <div>
           {/* Cards */}

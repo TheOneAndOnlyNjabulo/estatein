@@ -17,7 +17,7 @@ const PropertyCarousel = ({
   const swiperRef = useRef<any>(null);
 
   return (
-    <div className="mt-2">
+    <div className="mt-2 overflow-x-hidden">
       <Swiper
         spaceBetween={10} // Adjust space between slides
         slidesPerView={1} // Adjust number of slides visible at once
@@ -46,7 +46,7 @@ const PropertyCarousel = ({
           properties.map((property: any, index: number) => (
             <SwiperSlide key={index}>
               <PropertyCard
-                title={property.title}
+                title={property.name}
                 image={property.image}
                 description={property.description}
                 price={property.listingPrice}
