@@ -2,14 +2,16 @@
 import Header from "@/components/Header";
 import Pagination from "@/components/Pagination";
 import PropertyCard from "@/components/PropertyCard";
-import { properties } from "@/constants/constants";
+
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { title } from "process";
 import React from "react";
 import Form from "./Form";
+import { getAllProperties } from "@/actions/getProperty";
+import { Property } from "@prisma/client";
 
-const Properties = () => {
+const Properties = ({ properties }: { properties: Property[] }) => {
   return (
     <div>
       <div id="features" className="max-w-[1440px] m-auto mt-10 px-3 py-4">
@@ -17,6 +19,7 @@ const Properties = () => {
           title="Discover a World of Possibilities"
           subtitle={`Our portfolio of properties is as diverse as your dreams. Explore the following categories to find the perfect property that resonates with your vision of home`}
           buttonTitle="View All Properties"
+          hidden
           buttonOnClick={() => {}}
         />
         <div>
@@ -25,10 +28,14 @@ const Properties = () => {
             {properties.map((property, index) => (
               <PropertyCard
                 key={index}
-                title={property.title}
+                title={property.name}
                 image={property.image}
                 description={property.description}
-                price={property.price}
+                price={property.listingPrice}
+                bathroom={property.bathrooms}
+                bedroom={property.bedrooms}
+                id={property.id}
+                type={property.type}
               />
             ))}
           </div>

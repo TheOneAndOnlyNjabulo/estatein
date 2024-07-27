@@ -16,3 +16,19 @@ export const getPropertyById = async (id: string) => {
     throw new Error(error);
   }
 };
+
+export const getAddionalFees = async (id: string) => {
+  try {
+    const fees = await prisma.additionalFees.findMany({
+      where: {
+        id,
+      },
+    });
+
+    if (!fees) return null;
+
+    return fees;
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};

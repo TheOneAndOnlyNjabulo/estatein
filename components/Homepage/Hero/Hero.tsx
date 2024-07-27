@@ -6,6 +6,7 @@ import Button from "../../Button";
 import Link from "next/link";
 import HeroCards from "./HeroCards";
 import { useRouter } from "next/navigation";
+import { Property } from "@prisma/client";
 
 const Hero = () => {
   const router = useRouter();

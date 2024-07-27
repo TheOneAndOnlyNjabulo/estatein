@@ -6,8 +6,13 @@ import "swiper/css/navigation";
 import PropertyCard from "./PropertyCard";
 import { useRef } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { Property } from "@prisma/client";
 
-const PropertyCarousel = ({ properties }: { properties: any }) => {
+const PropertyCarousel = ({
+  properties,
+}: {
+  properties: Property[] | null;
+}) => {
   // Create a ref for the Swiper instance
   const swiperRef = useRef<any>(null);
 
@@ -37,16 +42,21 @@ const PropertyCarousel = ({ properties }: { properties: any }) => {
         // Assign ref to the Swiper instance
         onSwiper={(swiper) => (swiperRef.current = swiper)}
       >
-        {properties.map((property: any, index: number) => (
-          <SwiperSlide key={index}>
-            <PropertyCard
-              title={property.title}
-              image={property.image}
-              description={property.description}
-              price={property.price}
-            />
-          </SwiperSlide>
-        ))}
+        {properties &&
+          properties.map((property: any, index: number) => (
+            <SwiperSlide key={index}>
+              <PropertyCard
+                title={property.title}
+                image={property.image}
+                description={property.description}
+                price={property.listingPrice}
+                bathroom={property.bathrooms}
+                bedroom={property.bedrooms}
+                type={property.type}
+                id={property.id}
+              />
+            </SwiperSlide>
+          ))}
       </Swiper>
 
       <hr className="opacity-50 mt-4" />

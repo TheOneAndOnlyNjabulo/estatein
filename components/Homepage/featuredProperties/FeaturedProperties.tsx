@@ -3,13 +3,18 @@ import Header from "@/components/Header";
 import Pagination from "@/components/Pagination";
 import PropertyCard from "@/components/PropertyCard";
 import PropertyCarousel from "@/components/PropertyCorusel";
-import { properties } from "@/constants/constants";
+// import { properties } from "@/constants/constants";
+import { Property } from "@prisma/client";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { title } from "process";
 import React from "react";
 
-const FeaturedProperties = () => {
+interface HeroProps {
+  properties: Property[] | null;
+}
+
+const FeaturedProperties = ({ properties }: HeroProps) => {
   return (
     <div>
       <div id="features" className="max-w-[1440px] m-auto mt-10 px-3 py-4">
