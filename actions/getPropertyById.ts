@@ -1,3 +1,4 @@
+"use server";
 import prisma from "@/lib/prismadb";
 
 export const getPropertyById = async (id: string) => {

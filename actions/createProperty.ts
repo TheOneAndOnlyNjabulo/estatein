@@ -1,3 +1,4 @@
+"use serve";
 import prisma from "@/lib/prismadb";
 import { Property } from "@prisma/client";
 

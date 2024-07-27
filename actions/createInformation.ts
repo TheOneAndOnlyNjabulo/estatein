@@ -1,3 +1,4 @@
+"use server";
 import prisma from "@/lib/prismadb";
 import { AdditionalFees, Property } from "@prisma/client";
 
