@@ -1,16 +1,38 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Bath, Bed, Home, LocateIcon, MapPin } from "lucide-react";
+import { AdditionalFees, Property } from "@prisma/client";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { createProperty } from "@/actions/createProperty";
+import Image from "next/image";
+import Button from "@/components/Button";
+import { UploadButton } from "@/lib/uploadthing";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import AddtionalInformationForm from "./AddtionalInformationForm";
+import AdditionalnfoTable from "../AdditionalnfoTable";
+
+interface AddPropertyFormProps {
+  property: Property | null;
+  addtionFees?: AdditionalFees[] | null;
+}
 
 const fromSchema = z.object({
   name: z.string().min(1, "Name is Required!!"),
   description: z.string().min(1, "Description is required!!"),
   location: z.string().min(1, "Location is Required🤷‍♂️"),
   type: z.string().min(1, "Guess What... Type is required!!!"),
-  //   image: z.string().min(1),
+  image: z.string(),
   //   imagesMany: z.string().min(1),
   bathrooms: z
     .string()
@@ -21,8 +43,15 @@ const fromSchema = z.object({
     .min(1, "Required")
     .transform((value) => parseInt(value)),
   active: z.enum(["true", "false"]).transform((value) => value === "true"),
-  //   area: z.number(),
-  //   listingPrice: z.number(),
+  area: z
+    .string()
+    .min(1, "Required")
+    .transform((value) => parseInt(value)),
+
+  listingPrice: z
+    .string()
+    .min(1, "Required")
+    .transform((value) => parseInt(value)),
   // keyFeatures
 
   // additionalFees
@@ -31,7 +60,14 @@ const fromSchema = z.object({
   // monthlyExpenses
 });
 
-const PropertyForm = () => {
+const PropertyForm = ({ property, addtionFees }: AddPropertyFormProps) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [image, setImage] = useState<string | undefined>(property?.image);
+  const [imageIsDeleting, setImageIsDeleting] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -40,39 +76,68 @@ const PropertyForm = () => {
   } = useForm({
     resolver: zodResolver(fromSchema),
     defaultValues: {
-      name: "Prperty 24",
-      description: "This is a property",
-      location: "Cape Town",
-      image: "",
+      name: property?.name || "Prperty 24",
+      description: property?.description || "This is a property",
+      location: property?.location || "Cape Town",
+      image: property?.image || "",
+      area: "0",
       // imagesMany
       type: "villa",
       bathrooms: "1",
       bedrooms: "1",
 
-      listingPrice: 1,
+      listingPrice: "1",
       active: "true",
     },
   });
 
-  const onSubmit = async (data: any) => {
-    // const newForm = new FormData();
-    // newForm.append("name", data.name);
-    // newForm.append("description", data.description);
-    // newForm.append("location", data.location);
-    // newForm.append("bedrooms", data.bedrooms);
-    // newForm.append("type", data.type);
-    // newForm.append("bathrooms", data.bathrooms);
-    // const response = await api route
+  const handleDialogueOpen = () => {
+    setOpen((prev) => !prev);
+  };
 
-    // const result = await responsejson()
-    // alert result.message
-    console.log(data);
+  const onSubmit = async (data: any) => {
+    event?.preventDefault();
+    console.log("Form submitted", data);
+    setIsLoading(true);
+
+    const formData = { ...data, image: image || data.image };
+
+    try {
+      const response = await axios.post("/api/property", formData);
+      console.log("Property created successfully:", response.data);
+      router.push(`/admin/properties/${response.data.id}`);
+      // Handle successful response (e.g., redirect or show success message)
+    } catch (error) {
+      console.error("Error creating property:", error);
+      // setError("Failed to create property");
+    } finally {
+      setIsLoading(false);
+    }
+
+    console.log("created");
 
     reset();
   };
 
+  const handleImageDelete = (image: string) => {
+    setImageIsDeleting(true);
+    const imageKey = image.substring(image.lastIndexOf("/") + 1);
+
+    axios
+      .post("/api/uploadthing/delete", { imageKey })
+      .then((res) => {
+        if (res.data.success) {
+          setImage("");
+        }
+      })
+      .catch(() => {})
+      .finally(() => {
+        setImageIsDeleting(false);
+      });
+  };
+
   return (
-    <div className="max-w-[1440px] bg-bgsecondary p-4 rounded-md m-auto mt-10 flex flex-col gap-7">
+    <div className="max-w-[1440px] bg-bgsecondary p-4 rounded-md m-auto  flex flex-col gap-7">
       <form className="" onSubmit={handleSubmit(onSubmit)}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Part one */}
@@ -198,7 +263,7 @@ const PropertyForm = () => {
           {/* Part one ends */}
 
           {/* Part 2 */}
-          <div className="flex-1">
+          <div className="flex-1 flex flex-col gap-3">
             {/* status */}
             <div className="flex flex-col">
               <label className="font-semibold text-lg">Property Status</label>
@@ -216,6 +281,80 @@ const PropertyForm = () => {
                 <div className="text-red-500">{`${errors.active?.message}`}</div>
               )}
             </div>
+
+            {/* area */}
+            <div className="flex flex-col">
+              <label className="font-semibold text-lg">Property Status</label>
+              <div className="lg:max-w-full gap-3 h-[50px] flex items-center rounded-md border border-white/15 bg-bgsecondary p-2">
+                <input
+                  disabled={isLoading}
+                  type="number"
+                  className="p-3 ring-transparent focus:ring-transparent bg-bgsecondary flex-grow focus:outline-none"
+                  {...register("area")}
+                />
+                <span>sqrm</span>
+              </div>
+              {errors && errors?.area && (
+                <div className="text-red-500">{`${errors.area?.message}`}</div>
+              )}
+            </div>
+
+            {/* Listing Price */}
+            <div className="flex flex-col">
+              <label className="font-semibold text-lg">Listing Price</label>
+              <div className="lg:max-w-full h-[50px] flex items-center rounded-md border border-white/15 bg-bgsecondary p-2">
+                <span>R</span>
+                <input
+                  disabled={isLoading}
+                  type="number"
+                  className="p-3 ring-transparent focus:ring-transparent bg-bgsecondary flex-grow focus:outline-none"
+                  {...register("listingPrice")}
+                />
+              </div>
+              <div className="text-red-600">
+                {errors.listingPrice && (
+                  <p>{errors.listingPrice.message as string}</p>
+                )}
+              </div>
+            </div>
+
+            {/* Image */}
+            <div className="flex flex-col">
+              <label className="font-semibold text-lg">Image</label>
+              <div>
+                {image ? (
+                  <div className="relative max-w-[400px] max-h-[400px] overflow-hidden rounded-lg min-h-[200px] mt-4">
+                    <Image
+                      src={image}
+                      alt="Hotel Image"
+                      className="object-contain"
+                      fill
+                    />
+                    <Button
+                      title="delete"
+                      style="absolute right-[12px] top-0"
+                      onClick={() => handleImageDelete(image)}
+                    />
+                  </div>
+                ) : (
+                  <div className="flex flex-col items-center justify-center max-w-[400px] p-12 border-2 border-dashed border-primary">
+                    <UploadButton
+                      endpoint="imageUploader"
+                      onClientUploadComplete={(res: any) => {
+                        console.log("Files: ", res);
+                        setImage(res[0].url);
+                      }}
+                      onUploadError={(error: Error) => {
+                        console.log(`ERROR! ${error.message}`);
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
+              <div className="text-red-600">
+                {errors.image && <p>{errors.image.message as string}</p>}
+              </div>
+            </div>
           </div>
           {/* Part 2 */}
         </div>
@@ -229,6 +368,42 @@ const PropertyForm = () => {
           </button>
         </div>
       </form>
+
+      {property && (
+        <div>
+          <div className="flex justify-between">
+            <h2 className="text-3xl front-bold">Add additional information</h2>
+            <Dialog open={open} onOpenChange={setOpen}>
+              <DialogTrigger>
+                <div
+                  onClick={() => console.log("Click")}
+                  className=" px-4 hover:bg-background hover:text-primary py-2 bg-primary rounded-md"
+                >
+                  Add Information
+                </div>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Additional Information</DialogTitle>
+                  <DialogDescription>
+                    You can additional information like fees
+                  </DialogDescription>
+                </DialogHeader>
+                <div>
+                  <AddtionalInformationForm
+                    handleDialogueOpen={handleDialogueOpen}
+                    // additionalFees={addtionFees || null}
+                    property={property}
+                  />
+                </div>
+              </DialogContent>
+            </Dialog>
+          </div>
+          <div>
+            <AdditionalnfoTable info={addtionFees} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

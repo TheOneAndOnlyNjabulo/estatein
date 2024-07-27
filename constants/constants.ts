@@ -22,6 +22,13 @@ export const MenuItemsData: MenuItem[] = [
   },
 ];
 
+export const adminMenu = [
+  {
+    title: "My Properties",
+    href: "/admin/properties",
+  },
+];
+
 export interface HeroCardsItem {
   title: string;
   subtitle: string;

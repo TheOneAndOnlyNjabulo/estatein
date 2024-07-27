@@ -9,7 +9,7 @@ const NewPropertyPage = () => {
       <div className="max-w-[1440px] m-auto  px-3 py-4 text-white bg-background">
         {/* <NewPropertyForm /> */}
 
-        <PropertyForm />
+        <PropertyForm property={null} />
       </div>
     </div>
   );

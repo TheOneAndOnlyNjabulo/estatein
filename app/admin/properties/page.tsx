@@ -18,8 +18,10 @@ const page = async ({ property }: { property: Property }) => {
   const properties = await getProperties();
 
   return (
-    <div className="max-w-[1440px] p-5 bg-background text-white">
-      <PropertiesForms properties={properties} />
+    <div className="bg-background">
+      <div className="max-w-[1440px] p-5 bg-background text-white m-auto">
+        <PropertiesForms properties={properties} />
+      </div>
     </div>
   );
 };
