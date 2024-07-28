@@ -16,10 +16,10 @@ export const MenuItemsData: MenuItem[] = [
     title: "Properties",
     href: "/properties",
   },
-  {
-    title: "Services",
-    href: "/services",
-  },
+  // {
+  //   title: "Services",
+  //   href: "/services",
+  // },
 ];
 
 export const adminMenu = [

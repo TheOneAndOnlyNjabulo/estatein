@@ -7,6 +7,7 @@ import PropertyCarousel from "@/components/PropertyCorusel";
 import { Property } from "@prisma/client";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 import { title } from "process";
 import React from "react";
@@ -20,19 +21,31 @@ const FeaturedProperties = ({ properties }: HeroProps) => {
   return (
     <div>
       <div id="features" className="max-w-[1440px] m-auto mt-10 px-3 py-4">
-        <Header
-          title="Featured Properties"
-          subtitle={`Explore our handpacked selection of feature properties. each listing
+        <motion.div
+          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: -100 }}
+          transition={{ duration: 0.8 }}
+        >
+          {" "}
+          <Header
+            title="Featured Properties"
+            subtitle={`Explore our handpacked selection of feature properties. each listing
           offers a glimpse into exceptional homes and investments available
           through Estatein.Click "View Details" for more information`}
-          buttonTitle="View All Properties"
-          buttonOnClick={() => router.push("/properties")}
-        />
+            buttonTitle="View All Properties"
+            buttonOnClick={() => router.push("/properties")}
+          />
+        </motion.div>
         <div>
           {/* Cards */}
-          <div className="">
+          <motion.div
+            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 100 }}
+            transition={{ duration: 1 }}
+            className=""
+          >
             <PropertyCarousel properties={properties} />
-          </div>
+          </motion.div>
           {/* <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:cols-3 lg:grid-cols-4 gap-3 h-auto">
             {properties.map((property, index) => (
               <PropertyCard

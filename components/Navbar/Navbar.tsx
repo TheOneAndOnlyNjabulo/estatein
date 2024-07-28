@@ -14,7 +14,10 @@ const Navbar = () => {
           </Link>
         </div>
         <MenuItems />
-        <button className="p-2 text-white bg-background rounded-md hover:bg-primary">
+        <button
+          onClick={() => {}}
+          className="p-2 text-white bg-background rounded-md hover:bg-primary"
+        >
           Contact us
         </button>
       </div>

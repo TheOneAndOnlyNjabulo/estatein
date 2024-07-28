@@ -7,6 +7,16 @@ import Link from "next/link";
 import HeroCards from "./HeroCards";
 import { useRouter } from "next/navigation";
 import { Property } from "@prisma/client";
+import { motion } from "framer-motion";
+
+const container = (delay: any) => ({
+  hidden: { x: -100, opacity: 0 },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: { duration: 0.5, delay: delay },
+  },
+});
 
 const Hero = () => {
   const router = useRouter();
@@ -21,16 +31,31 @@ const Hero = () => {
         {/* First containter starts */}
         <div className="md:flex-1 flex p-3 bg-background rounded-lg text-white  justify-center flex-grow ">
           <div className="flex flex-col justify-center gap-5  max-w-[600px] ">
-            <div className="text-[35px] md:text-[30px] lg:text-[40px] xl:text-[60px] font-bold">
+            <motion.div
+              variants={container(0)}
+              initial="hidden"
+              animate="visible"
+              className="text-[35px] md:text-[30px] lg:text-[40px] xl:text-[60px] font-bold"
+            >
               <h1>Discover Your Dream</h1>
               <h1>Propert with Estatein</h1>
-            </div>
-            <p className="text-lg md:text-sm lg:text-lg xl:text-xl">
+            </motion.div>
+            <motion.p
+              variants={container(0.5)}
+              initial="hidden"
+              animate="visible"
+              className="text-lg md:text-sm lg:text-lg xl:text-xl"
+            >
               Your journey to finding the perfect property begins here. Explore
               our listing to find the home that matches your dreams
-            </p>
+            </motion.p>
 
-            <div className="flex lg:mt-5  gap-4 ">
+            <motion.div
+              variants={container(1)}
+              initial="hidden"
+              animate="visible"
+              className="flex lg:mt-5  gap-4 "
+            >
               <Button
                 title="Learn More"
                 style="bg-bg-background"
@@ -41,8 +66,14 @@ const Hero = () => {
                 style="bg-primary"
                 onClick={() => router.push("/properties")}
               />
-            </div>
-            <HeroCards />
+            </motion.div>
+            <motion.div
+              variants={container(1.5)}
+              initial="hidden"
+              animate="visible"
+            >
+              <HeroCards />
+            </motion.div>
           </div>
         </div>
         {/* First containter Ends */}
@@ -50,7 +81,13 @@ const Hero = () => {
 
         {/* second section starts */}
         <div className="md:flex-1 rounded-lg md:rounded-none flex-grow">
-          <div className="aspect-square relative flex-grow rounded-lg md:rounded-none">
+          <motion.div
+            variants={container(2)}
+            initial={{ x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 1.2 }}
+            className="aspect-square relative flex-grow rounded-lg md:rounded-none"
+          >
             <Image
               src="/Hero.png"
               sizes=""
@@ -58,7 +95,7 @@ const Hero = () => {
               fill
               alt="Container"
             />
-          </div>
+          </motion.div>
         </div>
         {/* second section endss */}
       </div>

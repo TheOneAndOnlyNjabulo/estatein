@@ -26,14 +26,14 @@ export default async function PropertiesId({ params }: PropertyProps) {
               {/* Name and LOcation */}
               <div className="flex gap-3">
                 <h2 className="text-3xl  font-bold">{property?.name}</h2>
-                <div className="flex items gap-2 p-2 bg-background cursor-pointer hover:text-primary border border-transparent hover:border-primary transition rounded-lg">
+                <div className="md:flex hidden items gap-2 p-2 bg-background cursor-pointer hover:text-primary border border-transparent hover:border-primary transition rounded-lg">
                   <MapPin className="size-5" />
                   {property?.location}
                 </div>
               </div>
 
               {/* price */}
-              <div className="text-2xl font-semibold">
+              <div className="text-2xl hidden md:block font-semibold">
                 R {property?.listingPrice}
               </div>
             </div>
@@ -51,6 +51,9 @@ export default async function PropertiesId({ params }: PropertyProps) {
                   />
                 )}
               </div>
+            </div>
+            <div className=" block text-2xl mt-5 md:hidden font-semibold">
+              R {property?.listingPrice}
             </div>
           </div>
 
