@@ -59,7 +59,7 @@ const Hero = () => {
               <Button
                 title="Learn More"
                 style="bg-bg-background"
-                onClick={() => {}}
+                onClick={() => router.push("/about-us")}
               />
               <Button
                 title="Browse Properties"
